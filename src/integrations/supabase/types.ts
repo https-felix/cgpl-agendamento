@@ -14,7 +14,114 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      profiles: {
+        Row: {
+          created_at: string
+          email: string | null
+          first_name: string
+          id: string
+          last_name: string
+          updated_at: string
+          user_id: string
+          whatsapp: string
+          whatsapp_last4: string
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          first_name: string
+          id?: string
+          last_name: string
+          updated_at?: string
+          user_id: string
+          whatsapp: string
+          whatsapp_last4: string
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          first_name?: string
+          id?: string
+          last_name?: string
+          updated_at?: string
+          user_id?: string
+          whatsapp?: string
+          whatsapp_last4?: string
+        }
+        Relationships: []
+      }
+      service_requests: {
+        Row: {
+          category: string
+          completed_at: string | null
+          contact: string
+          created_at: string
+          description: string
+          id: string
+          location: string
+          payment_amount: number | null
+          payment_due_date: string | null
+          payment_is_paid: boolean | null
+          payment_method: string | null
+          payment_notes: string | null
+          payment_paid_at: string | null
+          priority: string
+          requester: string
+          scheduled_date: string | null
+          scheduled_days: number | null
+          status: string
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          category: string
+          completed_at?: string | null
+          contact: string
+          created_at?: string
+          description: string
+          id?: string
+          location: string
+          payment_amount?: number | null
+          payment_due_date?: string | null
+          payment_is_paid?: boolean | null
+          payment_method?: string | null
+          payment_notes?: string | null
+          payment_paid_at?: string | null
+          priority: string
+          requester: string
+          scheduled_date?: string | null
+          scheduled_days?: number | null
+          status?: string
+          title: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          category?: string
+          completed_at?: string | null
+          contact?: string
+          created_at?: string
+          description?: string
+          id?: string
+          location?: string
+          payment_amount?: number | null
+          payment_due_date?: string | null
+          payment_is_paid?: boolean | null
+          payment_method?: string | null
+          payment_notes?: string | null
+          payment_paid_at?: string | null
+          priority?: string
+          requester?: string
+          scheduled_date?: string | null
+          scheduled_days?: number | null
+          status?: string
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
