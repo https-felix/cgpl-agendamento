@@ -22,7 +22,7 @@ export type Database = {
           id: string
           last_name: string
           updated_at: string
-          user_id: string
+          user_id: string | null
           whatsapp: string
           whatsapp_last4: string
         }
@@ -33,7 +33,7 @@ export type Database = {
           id?: string
           last_name: string
           updated_at?: string
-          user_id: string
+          user_id?: string | null
           whatsapp: string
           whatsapp_last4: string
         }
@@ -44,7 +44,7 @@ export type Database = {
           id?: string
           last_name?: string
           updated_at?: string
-          user_id?: string
+          user_id?: string | null
           whatsapp?: string
           whatsapp_last4?: string
         }

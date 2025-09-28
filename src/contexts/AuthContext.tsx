@@ -201,7 +201,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           last_name: userData.lastName,
           whatsapp: userData.whatsapp,
           whatsapp_last4: userData.whatsappLast4,
-          email: userData.email
+          email: userData.email || null
         });
 
       if (profileError) {
