@@ -154,7 +154,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
         if (registeredUser) {
           // Create a temporary email for Supabase auth
-          const tempEmail = `${registeredUser.whatsapp}@cgpl.temp`;
+          const tempEmail = `${registeredUser.whatsapp}@example.com`;
           const tempPassword = `${registeredUser.whatsapp}_${registeredUser.whatsappLast4}`;
           
           // Try to sign in or sign up with Supabase
@@ -215,7 +215,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       }
 
       // Create temp email and password for Supabase auth
-      const tempEmail = `${userData.whatsapp}@cgpl.temp`;
+      const tempEmail = `${userData.whatsapp}@example.com`;
       const tempPassword = `${userData.whatsapp}_${userData.whatsappLast4}`;
 
       // Sign up with Supabase auth
