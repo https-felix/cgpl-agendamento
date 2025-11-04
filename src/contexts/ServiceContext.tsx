@@ -153,13 +153,13 @@ export const ServiceProvider: React.FC<ServiceProviderProps> = ({ children }) =>
   }, [serviceRequests]);
 
   const createServiceRequest = async (request: Omit<ServiceRequest, 'id' | 'createdAt' | 'userId'>): Promise<string> => {
-    if (!user || !session?.user) throw new Error('User must be logged in to create requests');
+    if (!user) throw new Error('User must be logged in to create requests');
     
     try {
       const { data, error } = await supabase
         .from('service_requests')
         .insert({
-          user_id: session.user.id,
+          user_id: user.id,
           title: request.title,
           description: request.description,
           priority: request.priority,
