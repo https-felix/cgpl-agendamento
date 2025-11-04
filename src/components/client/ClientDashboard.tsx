@@ -16,6 +16,9 @@ export const ClientDashboard: React.FC = () => {
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
 
   const userRequests = user ? getServiceRequestsByUser(user.id) : [];
+  
+  console.log('User ID:', user?.id);
+  console.log('User requests:', userRequests.length, userRequests.map(r => ({ id: r.id, userId: r.userId, title: r.title })));
 
   const getStatusIcon = (status: string) => {
     switch (status) {

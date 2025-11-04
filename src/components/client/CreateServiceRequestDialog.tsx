@@ -64,6 +64,7 @@ export const CreateServiceRequestDialog: React.FC<CreateServiceRequestDialogProp
     setIsSubmitting(true);
 
     try {
+      console.log('Creating request for user:', user.id, user.fullName);
       const requestId = await createServiceRequest({
         title: formData.title.trim(),
         description: formData.description.trim(),
@@ -74,6 +75,8 @@ export const CreateServiceRequestDialog: React.FC<CreateServiceRequestDialogProp
         requester: user.fullName,
         status: 'pending'
       });
+
+      console.log('Request created with ID:', requestId);
 
       toast.success('Chamado criado com sucesso!', {
         description: 'Nossa equipe administrativa avaliará e retornará com prazo em até 3 dias úteis.'
