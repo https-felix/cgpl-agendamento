@@ -147,19 +147,27 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
       // Check for client login
       if (whatsappLast4) {
-        const registeredUser = registeredUsers.find(
-          u => u.firstName.toLowerCase() === firstName.toLowerCase() && 
-               u.whatsappLast4 === whatsappLast4
-        );
+        // Search directly in Supabase for real-time data
+        const { data: profile, error } = await supabase
+          .from('profiles')
+          .select('*')
+          .ilike('first_name', firstName)
+          .eq('whatsapp_last4', whatsappLast4)
+          .maybeSingle();
 
-        if (registeredUser) {
+        if (error) {
+          console.error('Error finding user:', error);
+          return false;
+        }
+
+        if (profile) {
           // Create client user without Supabase auth
           const clientUser: User = {
-            id: registeredUser.id,
-            firstName: registeredUser.firstName,
-            fullName: `${registeredUser.firstName} ${registeredUser.lastName}`,
+            id: profile.id,
+            firstName: profile.first_name,
+            fullName: `${profile.first_name} ${profile.last_name}`,
             role: 'client',
-            whatsappLast4: registeredUser.whatsappLast4
+            whatsappLast4: profile.whatsapp_last4
           };
           setUser(clientUser);
           localStorage.setItem('cgpl-auth-user', JSON.stringify(clientUser));
