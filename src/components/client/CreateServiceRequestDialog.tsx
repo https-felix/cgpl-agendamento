@@ -64,7 +64,7 @@ export const CreateServiceRequestDialog: React.FC<CreateServiceRequestDialogProp
     setIsSubmitting(true);
 
     try {
-      const requestId = createServiceRequest({
+      const requestId = await createServiceRequest({
         title: formData.title.trim(),
         description: formData.description.trim(),
         category: formData.category,
