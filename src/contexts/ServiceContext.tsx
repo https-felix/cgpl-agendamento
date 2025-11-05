@@ -37,6 +37,7 @@ export const ServiceProvider: React.FC<ServiceProviderProps> = ({ children }) =>
   // Load service requests from Supabase
   const loadServiceRequests = async () => {
     try {
+      console.log('Loading service requests from Supabase...');
       const { data, error } = await supabase
         .from('service_requests')
         .select('*')
@@ -47,6 +48,7 @@ export const ServiceProvider: React.FC<ServiceProviderProps> = ({ children }) =>
         return;
       }
 
+      console.log('Loaded requests from DB:', data.length);
       const requests: ServiceRequest[] = data.map(req => ({
         id: req.id,
         title: req.title,
@@ -87,17 +89,22 @@ export const ServiceProvider: React.FC<ServiceProviderProps> = ({ children }) =>
 
   // Subscribe to real-time changes
   useEffect(() => {
+    console.log('Setting up realtime subscription...');
     const subscription = supabase
       .channel('service_requests_changes')
       .on('postgres_changes', 
         { event: '*', schema: 'public', table: 'service_requests' },
-        () => {
+        (payload) => {
+          console.log('Realtime event received:', payload.eventType, payload);
           loadServiceRequests();
         }
       )
-      .subscribe();
+      .subscribe((status) => {
+        console.log('Realtime subscription status:', status);
+      });
 
     return () => {
+      console.log('Unsubscribing from realtime...');
       subscription.unsubscribe();
     };
   }, []);
